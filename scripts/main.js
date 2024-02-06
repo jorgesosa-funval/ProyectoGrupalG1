@@ -1,3 +1,5 @@
+const lista=document.querySelector("#user_list");
+const buscador = document.querySelector("#buscador");
 const usuarios = []
 const defaultChatList = [ /* nombre != miguel salinas  !includes = nombreUsurio*/
     {
@@ -253,3 +255,35 @@ defaultChatList.forEach(chat => {
 
 })
 
+function mostrarUsuario(usuarios){
+    lista.innerHTML = ""
+    for(let i=0;i<usuarios.length;i++){
+        const name=usuarios[i];
+        
+        const usuario=document.createElement("li");
+        const contenedorImagen=document.createElement("div");
+        contenedorImagen.classList.add("user_container_img");
+        const imagen=document.createElement("img");
+        const nombre=document.createElement("h3");
+        nombre.textContent=name;
+        imagen.setAttribute("src","https://robohash.org/"+i);
+
+        lista.appendChild(usuario);
+        usuario.append(contenedorImagen,nombre);
+        contenedorImagen.appendChild(imagen);
+    }
+}
+mostrarUsuario(usuarios);
+
+buscador.addEventListener("input", function(e){
+ 
+
+     const filteredUsers = usuarios.filter(user => user.toLowerCase().includes(this.value.toLowerCase())); 
+ /*    const filteredUsers = [];
+    usuarios.forEach(user=>{
+        if(user.toLowerCase().includes(this.value.toLowerCase())){
+            filteredUsers.push(user);
+        }
+    }) */
+    mostrarUsuario(filteredUsers);
+})
