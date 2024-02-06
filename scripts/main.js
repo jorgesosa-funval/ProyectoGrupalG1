@@ -1,4 +1,5 @@
-const defaultChatList = [
+const usuarios = []
+const defaultChatList = [ /* nombre != miguel salinas  !includes = nombreUsurio*/
     {
         userId: 1,
         conversacion: [
@@ -239,3 +240,16 @@ const defaultChatList = [
             },
         ]
     },]
+
+defaultChatList.forEach(chat => {
+
+    for (const data of chat.conversacion) {
+        if (data.remitente != "Miguel Salinas") {
+            usuarios.push(data.remitente);
+            break;
+        }
+
+    }
+
+})
+

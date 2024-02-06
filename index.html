@@ -8,31 +8,32 @@
     <title>Chat App</title>
   </head>
   <body>
-    <header>
-      <span>Back</span>
-      <div class="search_container">
-        <span>
-             
-              
-        </span>
-        <input type="text" name="buscador" id="buscador">
-      </div>
-    </header>
     <div class="main_container">
       <div class="user_container">
+        <h2>Lista de Usuarios</h2>
+        <div class="search_container">
+          <span> 
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+            
+          </span>
+          <input type="text" name="buscador" id="buscador" />
+        </div>
+
         <ul id="user_list">
           <li>
             <div class="user_container_img">
-              <img src="" alt="" />
+              <img src="https://robohash.org/1" alt="" />
             </div>
-            <h2>Nombre Usuario</h2>
+            <h3>Nombre Usuario</h3>
           </li>
         </ul>
       </div>
+
       <div class="Chat_container">
         <ul id="chat_list"></ul>
       </div>
-      
     </div>
   </body>
 </html>
