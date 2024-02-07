@@ -261,7 +261,6 @@ defaultChatList.forEach(chat => {
 function mostrarUsuario(usuarios) {
     lista.innerHTML = ""
     for (let i = 0; i < usuarios.length; i++) {
-        console.log(usuarios[i])
         const name = usuarios[i].userName;
         const id = usuarios[i].userId;
         const usuario = document.createElement("li");
@@ -281,14 +280,36 @@ function mostrarUsuario(usuarios) {
 mostrarUsuario(usuarios);
 
 buscador.addEventListener("input", function (e) {
-
-
-    const filteredUsers = usuarios.filter(user => user.toLowerCase().includes(this.value.toLowerCase()));
+ console.log(e.target)
+        
+    const filteredUsers = usuarios.filter(user => user.userName.toLowerCase().includes(this.value.toLowerCase()));
     /*    const filteredUsers = [];
        usuarios.forEach(user=>{
-           if(user.toLowerCase().includes(this.value.toLowerCase())){
+           if(user.userName.toLowerCase().includes(this.value.toLowerCase())){
                filteredUsers.push(user);
            }
        }) */
     mostrarUsuario(filteredUsers);
 })
+
+/* const ev = [...document.querySelectorAll('#user_list > li')];
+
+
+ev.forEach(eve => {
+    eve.addEventListener('click', () => console.log(eve.textContent))
+}) */
+
+lista.addEventListener('click', (e) => {
+    if (e.target != "ul") {
+
+        let result = []
+        defaultChatList.forEach(chat => {
+            if (chat.userId == e.target.closest('li').id) {
+                result = chat.conversacion
+            }
+        })
+        console.log(result)
+
+    }
+})
+

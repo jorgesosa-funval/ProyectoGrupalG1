@@ -103,6 +103,7 @@ header {
 
     flex-grow: 1;
     background-color: blanchedalmond;
+    padding: 20px;
 }
 
 
@@ -128,4 +129,38 @@ header {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+/* message */
+.message_item{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    max-width: 620px;
+    padding: 20px;
+    justify-content: space-evenly;
+    background-color: #31333880;
+    border-radius: 15px;
+    gap: 15px;
+}
+.message_head{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.message{
+    height: 70%;
+}
+.main_message{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.message_img_container{
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 100%;
+    background-color: aqua;
+    flex-shrink: 0;
 }
