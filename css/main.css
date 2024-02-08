@@ -132,16 +132,21 @@ header {
 }
 
 /* message */
+.Chat_container > ul{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 .message_item{
     display: flex;
     align-items: center;
-    width: 80%;
-    max-width: 620px;
-    padding: 20px;
-    justify-content: space-evenly;
-    background-color: #31333880;
-    border-radius: 15px;
+    width: 100%;
     gap: 15px;
+   
+}
+.reverse{
+  flex-direction: row-reverse;
 }
 .message_head{
     display: flex;
@@ -151,10 +156,14 @@ header {
 .message{
     height: 70%;
 }
-.main_message{
+.message_body{
+    background-color: #31333880;
+    padding: 10px 15px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    max-width: 580px;
 }
 .message_img_container{
     width: 60px;
@@ -163,4 +172,7 @@ header {
     border-radius: 100%;
     background-color: aqua;
     flex-shrink: 0;
+}
+.message_img_container > img{
+    width: 100%;
 }
