@@ -1,4 +1,5 @@
 const lista = document.querySelector("#user_list");
+const chat_list = document.querySelector("#chat_list");
 const buscador = document.querySelector("#buscador");
 const usuarios = []
 const defaultChatList = [ /* nombre != miguel salinas  !includes = nombreUsurio*/
@@ -270,7 +271,7 @@ function mostrarUsuario(usuarios) {
         const imagen = document.createElement("img");
         const nombre = document.createElement("h3");
         nombre.textContent = name;
-        imagen.setAttribute("src", "https://robohash.org/" + i);
+        imagen.setAttribute("src", "https://robohash.org/" + (i + 1));
 
         lista.appendChild(usuario);
         usuario.append(contenedorImagen, nombre);
@@ -280,36 +281,61 @@ function mostrarUsuario(usuarios) {
 mostrarUsuario(usuarios);
 
 buscador.addEventListener("input", function (e) {
- console.log(e.target)
-        
+    console.log(e.target)
+
     const filteredUsers = usuarios.filter(user => user.userName.toLowerCase().includes(this.value.toLowerCase()));
-    /*    const filteredUsers = [];
-       usuarios.forEach(user=>{
-           if(user.userName.toLowerCase().includes(this.value.toLowerCase())){
-               filteredUsers.push(user);
-           }
-       }) */
     mostrarUsuario(filteredUsers);
 })
 
-/* const ev = [...document.querySelectorAll('#user_list > li')];
-
-
-ev.forEach(eve => {
-    eve.addEventListener('click', () => console.log(eve.textContent))
-}) */
-
 lista.addEventListener('click', (e) => {
-    if (e.target != "ul") {
 
+    if (e.target != "ul") {
+        let userId = e.target.closest('li').id
         let result = []
         defaultChatList.forEach(chat => {
-            if (chat.userId == e.target.closest('li').id) {
+
+            if (chat.userId == userId) {
                 result = chat.conversacion
             }
-        })
-        console.log(result)
 
+        })
+
+        conversationItem(chat_list, result, userId)
     }
 })
+
+function conversationItem(element, conversations, id) {
+    element.innerHTML = ""
+    conversations.forEach(conversation => {
+        const li = document.createElement("li")
+        const message_body = document.createElement("div")
+        const message_head = document.createElement("div")
+        const contenedorImagen = document.createElement("div")
+        const imagenUsuario = document.createElement("img")
+        const fecha = document.createElement("span")
+        const nombreUsuario = document.createElement("h4")
+        const message = document.createElement("p")
+
+        let reverse = conversation.remitente === "Miguel Salinas"
+        li.classList.add("message_item", reverse && 'reverse')
+
+        message_body.classList.add("message_body",)
+        message_head.classList.add("message_head")
+        contenedorImagen.classList.add("message_img_container")
+        message.classList.add("message")
+
+        imagenUsuario.src = reverse ? "https://robohash.org/200" : `https://robohash.org/${id} `
+        imagenUsuario.alt = "user image"
+        fecha.textContent = conversation.fechaEnvio
+        nombreUsuario.textContent = reverse ? "Yo" : conversation.remitente
+        message.textContent = conversation.mensaje
+
+        contenedorImagen.appendChild(imagenUsuario);
+        message_head.append(fecha, nombreUsuario)
+        message_body.append(message_head, message)
+        li.append(message_body, contenedorImagen)
+        element.appendChild(li)
+    })
+
+}
 
